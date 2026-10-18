@@ -1,5 +1,4 @@
 import { Mail, MapPin, Phone } from "lucide-react"
-import { cacheLife } from "next/cache"
 import Link from "next/link"
 
 import { Logo } from "@/components/site/logo"
@@ -10,16 +9,10 @@ import { href, type Locale, type RouteKey } from "@/lib/i18n"
 
 const FOOTER_NAV = ["home", "services", "pricing", "process", "about", "gallery", "contact"] as const satisfies RouteKey[]
 
-async function currentYear() {
-  "use cache"
-  cacheLife("days")
-  return new Date().getFullYear()
-}
-
 export async function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const { footer, nav, common, contact } = dict
   const { phone, email } = siteConfig.contact
-  const year = await currentYear()
+  const year = new Date().getFullYear()
 
   return (
     <footer className="mt-auto bg-charcoal text-cream">

@@ -9,8 +9,8 @@ const securityHeaders = [
 ]
 
 const nextConfig: NextConfig = {
-  cacheComponents: true,
-  partialPrefetching: true,
+  // No Cache Components: the Cloudflare Workers runtime (OpenNext) does not
+  // support them, and requests hang until the Worker is killed (error 1101).
   poweredByHeader: false,
   // Let other devices on the local Wi-Fi load dev assets (HMR, chunks).
   allowedDevOrigins: ["192.168.*.*"],
@@ -37,3 +37,5 @@ const nextConfig: NextConfig = {
 }
 
 export default nextConfig
+
+import("@opennextjs/cloudflare").then((m) => m.initOpenNextCloudflareForDev())
