@@ -21,12 +21,11 @@ export function AboutPage({ locale }: { locale: Locale }) {
       <section className="py-16 md:py-24">
         <div className="container-page grid items-start gap-12 md:grid-cols-2 lg:gap-20">
           <Reveal className="relative">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-t-[10rem] rounded-b-[2rem]">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-t-[10rem] rounded-b-[2rem] bg-muted">
               <Image
                 src={images.stairs.src}
                 alt={images.stairs.alt[locale]}
                 fill
-                placeholder="blur"
                 sizes="(min-width: 768px) 45vw, 100vw"
                 className="object-cover"
               />
@@ -59,7 +58,7 @@ export function AboutPage({ locale }: { locale: Locale }) {
                   className={index < 3 ? "lg:col-span-2" : "lg:col-span-3"}
                 >
                   <div className="h-full rounded-3xl bg-cream p-7 transition-transform duration-300 hover:-translate-y-1">
-                    <Icon className="size-6 text-sage-deep" aria-hidden="true" />
+                    <Icon className="size-6 text-pink-deep" aria-hidden="true" />
                     <h3 className="mt-5 text-xl font-normal text-charcoal">{value.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{value.text}</p>
                   </div>

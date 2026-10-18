@@ -17,7 +17,7 @@ export function TrustSection({ locale, home }: { locale: Locale; home: Dictionar
             {testimonials.map((item, index) => (
               <Reveal as="li" key={item.author} delay={index * 0.08}>
                 <figure className="flex h-full flex-col rounded-3xl bg-white p-8">
-                  <Quote className="size-7 text-sage" aria-hidden="true" />
+                  <Quote className="size-7 text-pink" aria-hidden="true" />
                   <blockquote className="mt-4 flex-1 font-heading text-lg leading-relaxed text-charcoal">
                     {item.quote[locale]}
                   </blockquote>
@@ -39,16 +39,16 @@ export function TrustSection({ locale, home }: { locale: Locale; home: Dictionar
   return (
     <section className="py-20 md:py-28">
       <div className="container-page">
-        <div className="rounded-[2.5rem] bg-beige-soft px-6 py-14 sm:px-12 md:py-20">
-          <SectionHeading eyebrow={promise.eyebrow} title={promise.title} lead={promise.lead} align="center" />
+        <div className="rounded-[2.5rem] bg-charcoal px-6 py-14 sm:px-12 md:py-20">
+          <SectionHeading eyebrow={promise.eyebrow} title={promise.title} lead={promise.lead} align="center" tone="dark" />
           <ul className="mx-auto mt-12 grid max-w-5xl gap-8 md:grid-cols-3 md:gap-10">
             {promise.items.map((item, index) => (
               <Reveal as="li" key={item.title} delay={index * 0.08} className="text-center">
-                <span className="font-heading text-5xl text-sage-deep/70" aria-hidden="true">
+                <span className="font-heading text-5xl text-pink" aria-hidden="true">
                   0{index + 1}
                 </span>
-                <h3 className="mt-3 text-xl font-normal text-charcoal">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+                <h3 className="mt-3 text-xl font-normal text-white">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-white/70">{item.text}</p>
               </Reveal>
             ))}
           </ul>

@@ -2,6 +2,7 @@ import { Building2, Clock, Mail, MapPin, Phone, type LucideIcon } from "lucide-r
 import type { ReactNode } from "react"
 
 import { phoneHref, siteConfig } from "@/config/site"
+import { SocialLinks } from "@/components/site/social-links"
 import type { Dictionary } from "@/content"
 
 export function ContactInfo({ contact, serviceArea }: { contact: Dictionary["contact"]; serviceArea: string }) {
@@ -55,6 +56,12 @@ export function ContactInfo({ contact, serviceArea }: { contact: Dictionary["con
           </InfoRow>
         )}
       </dl>
+      {(siteConfig.social.instagram || siteConfig.social.facebook) && (
+        <div className="mt-8 border-t border-cream/15 pt-6">
+          <p className="text-xs tracking-[0.14em] text-cream/60 uppercase">{info.social}</p>
+          <SocialLinks className="mt-3" />
+        </div>
+      )}
       {!phone && !email && <p className="mt-8 border-t border-cream/15 pt-6 text-sm text-cream/75">{info.formHint}</p>}
     </div>
   )
@@ -64,7 +71,7 @@ function InfoRow({ icon: Icon, label, children }: { icon: LucideIcon; label: str
   return (
     <div className="flex gap-4">
       <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-cream/10">
-        <Icon className="size-4 text-sage" aria-hidden="true" />
+        <Icon className="size-4 text-pink" aria-hidden="true" />
       </span>
       <div>
         <dt className="text-xs tracking-[0.14em] text-cream/60 uppercase">{label}</dt>

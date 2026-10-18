@@ -28,7 +28,7 @@ export default function GlobalNotFound() {
         <Link href={routes.home.cs} aria-label={cs.nav.homeLink}>
           <Logo />
         </Link>
-        <p className="mt-14 font-heading text-8xl text-sage-deep/70">404</p>
+        <p className="mt-14 font-heading text-8xl text-pink-deep/70">404</p>
         <h1 className="mt-4 font-heading text-4xl font-normal text-charcoal">{cs.notFound.title}</h1>
         <p className="mt-4 max-w-md leading-relaxed text-muted-foreground">{cs.notFound.text}</p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">

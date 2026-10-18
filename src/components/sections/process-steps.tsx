@@ -24,7 +24,7 @@ export function ProcessSteps({ steps, stepLabel, compact = false }: ProcessSteps
         >
           <span
             className={cn(
-              "flex items-center justify-center rounded-full bg-sage-soft font-heading text-charcoal",
+              "flex items-center justify-center rounded-full bg-pink-soft font-heading text-charcoal",
               compact ? "size-11 text-lg" : "size-14 text-2xl",
             )}
           >

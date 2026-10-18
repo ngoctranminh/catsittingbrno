@@ -3,6 +3,7 @@ import { cacheLife } from "next/cache"
 import Link from "next/link"
 
 import { Logo } from "@/components/site/logo"
+import { SocialLinks } from "@/components/site/social-links"
 import { phoneHref, siteConfig } from "@/config/site"
 import type { Dictionary } from "@/content"
 import { href, type Locale, type RouteKey } from "@/lib/i18n"
@@ -32,7 +33,7 @@ export async function Footer({ locale, dict }: { locale: Locale; dict: Dictionar
         </div>
 
         <nav aria-label={footer.navTitle}>
-          <h2 className="mb-4 font-sans text-xs font-semibold tracking-[0.18em] text-sage uppercase">{footer.navTitle}</h2>
+          <h2 className="mb-4 font-sans text-xs font-semibold tracking-[0.18em] text-pink uppercase">{footer.navTitle}</h2>
           <ul className="space-y-2.5 text-sm">
             {FOOTER_NAV.map((key) => (
               <li key={key}>
@@ -45,15 +46,15 @@ export async function Footer({ locale, dict }: { locale: Locale; dict: Dictionar
         </nav>
 
         <div>
-          <h2 className="mb-4 font-sans text-xs font-semibold tracking-[0.18em] text-sage uppercase">{footer.contactTitle}</h2>
+          <h2 className="mb-4 font-sans text-xs font-semibold tracking-[0.18em] text-pink uppercase">{footer.contactTitle}</h2>
           <ul className="space-y-3 text-sm text-cream/75">
             <li className="flex items-start gap-2.5">
-              <MapPin className="mt-0.5 size-4 shrink-0 text-sage" aria-hidden="true" />
+              <MapPin className="mt-0.5 size-4 shrink-0 text-pink" aria-hidden="true" />
               {common.serviceArea}
             </li>
             {phone && (
               <li className="flex items-start gap-2.5">
-                <Phone className="mt-0.5 size-4 shrink-0 text-sage" aria-hidden="true" />
+                <Phone className="mt-0.5 size-4 shrink-0 text-pink" aria-hidden="true" />
                 <a href={phoneHref(phone)} className="transition-colors hover:text-white">
                   {phone}
                 </a>
@@ -61,7 +62,7 @@ export async function Footer({ locale, dict }: { locale: Locale; dict: Dictionar
             )}
             {email && (
               <li className="flex items-start gap-2.5">
-                <Mail className="mt-0.5 size-4 shrink-0 text-sage" aria-hidden="true" />
+                <Mail className="mt-0.5 size-4 shrink-0 text-pink" aria-hidden="true" />
                 <a href={`mailto:${email}`} className="break-all transition-colors hover:text-white">
                   {email}
                 </a>
@@ -75,10 +76,11 @@ export async function Footer({ locale, dict }: { locale: Locale; dict: Dictionar
               </li>
             )}
           </ul>
+          <SocialLinks className="mt-5" />
         </div>
 
         <div>
-          <h2 className="mb-4 font-sans text-xs font-semibold tracking-[0.18em] text-sage uppercase">{footer.legalTitle}</h2>
+          <h2 className="mb-4 font-sans text-xs font-semibold tracking-[0.18em] text-pink uppercase">{footer.legalTitle}</h2>
           <ul className="space-y-2.5 text-sm">
             <li>
               <Link href={href("privacy", locale)} className="text-cream/75 transition-colors hover:text-white">

@@ -415,6 +415,7 @@ export const en: Dictionary = {
       hours: "Opening hours",
       company: "Operator",
       ico: "Company ID (IČO)",
+      social: "Social media",
       pending: "Coming soon",
       formHint: "The easiest way to reach us is the form – we will get back to you.",
     },
@@ -479,7 +480,7 @@ export const en: Dictionary = {
   },
 
   footer: {
-    tagline: "Cat care in the comfort of their own home. Brno and surroundings.",
+    tagline: "Professional care for your feline friends right in your home, where they feel best.",
     navTitle: "Navigation",
     contactTitle: "Contact",
     legalTitle: "Information",

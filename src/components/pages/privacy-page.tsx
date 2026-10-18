@@ -32,8 +32,8 @@ export function PrivacyPage({ locale }: { locale: Locale }) {
       </p>
 
       {!hasLegalIdentity && (
-        <p className="mt-8 flex items-start gap-3 rounded-2xl border border-beige bg-beige-soft p-5 text-sm leading-relaxed text-charcoal/85">
-          <Info className="mt-0.5 size-4 shrink-0 text-sage-deep" aria-hidden="true" />
+        <p className="mt-8 flex items-start gap-3 rounded-2xl border border-pink/30 bg-pink-soft p-5 text-sm leading-relaxed text-charcoal/85">
+          <Info className="mt-0.5 size-4 shrink-0 text-pink-deep" aria-hidden="true" />
           {privacy.draftNotice}
         </p>
       )}

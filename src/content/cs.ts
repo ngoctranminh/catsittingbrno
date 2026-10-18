@@ -417,6 +417,7 @@ export const cs = {
       hours: "Provozní doba",
       company: "Provozovatel",
       ico: "IČO",
+      social: "Sociální sítě",
       pending: "Doplníme brzy",
       formHint: "Nejjednodušší je napsat nám přes formulář – ozveme se vám zpět.",
     },
@@ -481,7 +482,7 @@ export const cs = {
   },
 
   footer: {
-    tagline: "Péče o kočky v pohodlí jejich domova. Brno a okolí.",
+    tagline: "Profesionální péče o vaše kočičí parťáky přímo u vás doma, kde je jim nejlíp.",
     navTitle: "Navigace",
     contactTitle: "Kontakt",
     legalTitle: "Informace",

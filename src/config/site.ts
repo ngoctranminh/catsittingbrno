@@ -51,7 +51,7 @@ export const siteConfig: SiteConfig = {
   logo: "/images/logo.jpg",
   url: (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, ""),
   contact: {
-    phone: null,
+    phone: "+420 776 807 555",
     email: null,
   },
   address: {
@@ -62,15 +62,15 @@ export const siteConfig: SiteConfig = {
   },
   serviceArea: ["Brno"],
   legal: {
-    operatorName: null,
+    operatorName: "Ha Šarmanová",
     ico: null,
     dic: null,
     registration: null,
   },
   openingHours: null,
   social: {
-    instagram: null,
-    facebook: null,
+    instagram: "https://www.instagram.com/Catsitting_Brno",
+    facebook: "https://www.facebook.com/CatsittingBrno",
   },
 }
 

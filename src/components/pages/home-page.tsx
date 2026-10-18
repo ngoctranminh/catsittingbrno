@@ -47,7 +47,7 @@ export function HomePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="bg-beige-soft py-20 md:py-28">
+      <section className="bg-pink-soft py-20 md:py-28">
         <div className="container-page">
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <SectionHeading eyebrow={home.process.eyebrow} title={home.process.title} lead={home.process.lead} />

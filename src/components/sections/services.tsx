@@ -40,17 +40,16 @@ export function ServiceCard({ service, locale, detailed = false, includesLabel, 
         id={service.id}
         className="group flex h-full scroll-mt-28 flex-col overflow-hidden rounded-3xl border border-border/70 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_50px_-30px_rgba(51,51,51,0.45)]"
       >
-        <div className="relative aspect-[3/2] overflow-hidden">
+        <div className="relative aspect-[3/2] overflow-hidden bg-muted">
           <Image
             src={image.src}
             alt={image.alt[locale]}
             fill
-            placeholder="blur"
             sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
             className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           />
-          <span className="absolute bottom-4 left-4 flex size-11 items-center justify-center rounded-2xl bg-cream/95 shadow-sm backdrop-blur">
-            <Icon className="size-5 text-sage-deep" aria-hidden="true" />
+          <span className="absolute bottom-4 left-4 flex size-11 items-center justify-center rounded-2xl bg-cream shadow-sm">
+            <Icon className="size-5 text-pink-deep" aria-hidden="true" />
           </span>
         </div>
         <div className="flex flex-1 flex-col p-6 sm:p-7">
@@ -61,12 +60,12 @@ export function ServiceCard({ service, locale, detailed = false, includesLabel, 
           {detailed && (
             <div className="mt-6 border-t border-border/70 pt-5">
               {includesLabel && (
-                <p className="text-xs font-semibold tracking-[0.16em] text-sage-deep uppercase">{includesLabel}</p>
+                <p className="text-xs font-semibold tracking-[0.16em] text-pink-deep uppercase">{includesLabel}</p>
               )}
               <ul className="mt-3 space-y-2 text-sm text-charcoal/85">
                 {service.includes.map((item) => (
                   <li key={item} className="flex items-start gap-2">
-                    <Check className="mt-0.5 size-4 shrink-0 text-sage-deep" aria-hidden="true" />
+                    <Check className="mt-0.5 size-4 shrink-0 text-pink-deep" aria-hidden="true" />
                     {item}
                   </li>
                 ))}

@@ -21,7 +21,7 @@ export function rootMetadata(locale: Locale): Metadata {
 }
 
 export const rootViewport: Viewport = {
-  themeColor: "#faf7f2",
+  themeColor: "#ffffff",
   colorScheme: "light",
 }
 

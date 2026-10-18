@@ -125,12 +125,12 @@ export function InquiryForm({ locale, contact }: { locale: Locale; contact: Dict
             className={cn(
               "flex gap-3 rounded-2xl border p-4 text-sm animate-in fade-in slide-in-from-top-1",
               state.status === "success"
-                ? "border-sage bg-sage-soft text-charcoal"
+                ? "border-pink bg-pink-soft text-charcoal"
                 : "border-destructive/30 bg-destructive/5 text-charcoal",
             )}
           >
             {state.status === "success" ? (
-              <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-sage-deep" aria-hidden="true" />
+              <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-pink-deep" aria-hidden="true" />
             ) : (
               <AlertCircle className="mt-0.5 size-5 shrink-0 text-destructive" aria-hidden="true" />
             )}
@@ -274,7 +274,7 @@ export function InquiryForm({ locale, contact }: { locale: Locale; contact: Dict
 
       <p id="inquiry-gdpr" className="text-xs leading-relaxed text-muted-foreground">
         {form.gdpr}{" "}
-        <Link href={href("privacy", locale)} className="font-medium text-charcoal underline underline-offset-4 hover:text-sage-deep">
+        <Link href={href("privacy", locale)} className="font-medium text-charcoal underline underline-offset-4 hover:text-pink-deep">
           {form.gdprLink}
         </Link>
         .

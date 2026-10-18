@@ -27,7 +27,7 @@ export function PricingPage({ locale }: { locale: Locale }) {
                   )}
                 >
                   {pkg.featured && (
-                    <span className="absolute -top-3 left-7 rounded-full bg-sage px-3 py-1 text-xs font-semibold text-charcoal">
+                    <span className="absolute -top-3 left-7 rounded-full bg-pink px-3 py-1 text-xs font-semibold text-charcoal">
                       {pricing.featuredLabel}
                     </span>
                   )}
@@ -38,7 +38,7 @@ export function PricingPage({ locale }: { locale: Locale }) {
                   <p
                     className={cn(
                       "mt-6 border-y py-4 font-heading text-xl",
-                      pkg.featured ? "border-cream/15 text-sage" : "border-border/70 text-sage-deep",
+                      pkg.featured ? "border-cream/15 text-pink" : "border-border/70 text-pink-deep",
                     )}
                   >
                     {common.priceOnRequest}
@@ -47,7 +47,7 @@ export function PricingPage({ locale }: { locale: Locale }) {
                     {pkg.includes.map((item) => (
                       <li key={item} className="flex items-start gap-2">
                         <Check
-                          className={cn("mt-0.5 size-4 shrink-0", pkg.featured ? "text-sage" : "text-sage-deep")}
+                          className={cn("mt-0.5 size-4 shrink-0", pkg.featured ? "text-pink" : "text-pink-deep")}
                           aria-hidden="true"
                         />
                         {item}
@@ -75,15 +75,15 @@ export function PricingPage({ locale }: { locale: Locale }) {
               <ul className="mt-5 space-y-3 text-charcoal/85">
                 {pricing.factors.map((factor) => (
                   <li key={factor} className="flex items-start gap-3">
-                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-sage-deep" aria-hidden="true" />
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-pink-deep" aria-hidden="true" />
                     {factor}
                   </li>
                 ))}
               </ul>
             </Reveal>
-            <Reveal delay={0.1} className="flex flex-col justify-between gap-6 rounded-3xl bg-sage-soft p-7 sm:p-9">
+            <Reveal delay={0.1} className="flex flex-col justify-between gap-6 rounded-3xl bg-pink-soft p-7 sm:p-9">
               <p className="flex items-start gap-3 leading-relaxed text-charcoal/85">
-                <Info className="mt-1 size-5 shrink-0 text-sage-deep" aria-hidden="true" />
+                <Info className="mt-1 size-5 shrink-0 text-pink-deep" aria-hidden="true" />
                 {pricing.note}
               </p>
               <Link href={href("contact", locale)} className={cn(buttonVariants({ size: "lg" }), "self-start")}>

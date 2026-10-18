@@ -16,7 +16,7 @@ export function GalleryPage({ locale }: { locale: Locale }) {
         <div className="container-page">
           <Gallery items={galleryItems} locale={locale} text={gallery} />
           <p className="mx-auto mt-10 flex max-w-2xl items-start gap-3 text-sm leading-relaxed text-muted-foreground">
-            <Info className="mt-0.5 size-4 shrink-0 text-sage-deep" aria-hidden="true" />
+            <Info className="mt-0.5 size-4 shrink-0 text-pink-deep" aria-hidden="true" />
             {gallery.disclaimer}
           </p>
         </div>

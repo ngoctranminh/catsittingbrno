@@ -27,8 +27,8 @@ export function ServicesPage({ locale }: { locale: Locale }) {
               />
             ))}
           </div>
-          <p className="mt-10 flex items-start gap-3 rounded-2xl bg-beige-soft p-5 text-sm leading-relaxed text-charcoal/80">
-            <Info className="mt-0.5 size-4 shrink-0 text-sage-deep" aria-hidden="true" />
+          <p className="mt-10 flex items-start gap-3 rounded-2xl bg-pink-soft p-5 text-sm leading-relaxed text-charcoal/80">
+            <Info className="mt-0.5 size-4 shrink-0 text-pink-deep" aria-hidden="true" />
             {services.note}
           </p>
         </div>

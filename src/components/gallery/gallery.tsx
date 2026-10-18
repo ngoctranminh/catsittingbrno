@@ -73,7 +73,7 @@ export function Gallery({ items, locale, text }: GalleryProps) {
               "rounded-full border px-4 py-2 text-sm transition-all duration-300",
               filter === key
                 ? "border-charcoal bg-charcoal text-cream"
-                : "border-border bg-white text-charcoal/80 hover:border-sage hover:text-charcoal",
+                : "border-border bg-white text-charcoal/80 hover:border-pink hover:text-charcoal",
             )}
           >
             {text.albums[key]}
@@ -98,7 +98,7 @@ export function Gallery({ items, locale, text }: GalleryProps) {
                 <button
                   type="button"
                   onClick={() => open(i)}
-                  className="group relative block w-full overflow-hidden rounded-3xl focus-visible:ring-3 focus-visible:ring-ring/60 focus-visible:outline-none"
+                  className="group relative block w-full overflow-hidden rounded-3xl bg-muted focus-visible:ring-3 focus-visible:ring-ring/60 focus-visible:outline-none"
                 >
                   <span className="sr-only">
                     {text.openImage}: {image.alt[locale]}
@@ -106,7 +106,6 @@ export function Gallery({ items, locale, text }: GalleryProps) {
                   <Image
                     src={image.src}
                     alt=""
-                    placeholder="blur"
                     sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
                     className="h-auto w-full transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                   />

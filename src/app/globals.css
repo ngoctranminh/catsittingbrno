@@ -3,18 +3,19 @@
 @import "shadcn/tailwind.css";
 
 /*
- * Brand palette — change these to rebrand the whole site.
- * Cream #FAF7F2 · Sage #A8BFA8 · Warm beige #E8DCCB · Charcoal #333333 · White #FFFFFF
+ * Brand palette (from the logo) — change these to rebrand the whole site.
+ * Pink · black · white: Pink #E64CC0 · Ink #16131A · White #FFFFFF
+ * Pink is too light for white text (3.4:1), so text on pink is always ink — like the logo.
  */
 :root {
-  --cream: #faf7f2;
-  --sage: #a8bfa8;
-  --sage-soft: #dfe8df;
-  /* Darker sage for text and icons on light backgrounds (WCAG AA on cream). */
-  --sage-deep: #4f6b53;
-  --beige: #e8dccb;
-  --beige-soft: #f2ebe0;
-  --charcoal: #333333;
+  /* Page background — kept as a token so sections can still say bg-cream. */
+  --cream: #ffffff;
+  --pink: #e64cc0;
+  --pink-soft: #fde8f6;
+  /* Darker pink for text and icons on light backgrounds (WCAG AA on white). */
+  --pink-deep: #a3157f;
+  /* Near-black ink, like the cat in the logo. */
+  --charcoal: #16131a;
   --white: #ffffff;
 
   --background: var(--cream);
@@ -23,19 +24,19 @@
   --card-foreground: var(--charcoal);
   --popover: var(--white);
   --popover-foreground: var(--charcoal);
-  --primary: var(--charcoal);
-  --primary-foreground: var(--cream);
-  --secondary: var(--sage);
+  --primary: var(--pink);
+  --primary-foreground: var(--charcoal);
+  --secondary: var(--white);
   --secondary-foreground: var(--charcoal);
-  --muted: var(--beige-soft);
-  --muted-foreground: #5f5a54;
-  --accent: var(--sage-soft);
+  --muted: #f7f5f6;
+  --muted-foreground: #5e5862;
+  --accent: var(--pink-soft);
   --accent-foreground: var(--charcoal);
-  --destructive: #b3412f;
-  --success: var(--sage-deep);
-  --border: #e3d9ca;
-  --input: #d9cdbb;
-  --ring: var(--sage-deep);
+  --destructive: #c0352b;
+  --success: #2e7a52;
+  --border: #ece6ea;
+  --input: #dcd3d9;
+  --ring: var(--pink-deep);
   --radius: 0.875rem;
 }
 
@@ -45,11 +46,9 @@
   --font-sans: var(--font-body);
   --font-heading: var(--font-display);
   --color-cream: var(--cream);
-  --color-sage: var(--sage);
-  --color-sage-soft: var(--sage-soft);
-  --color-sage-deep: var(--sage-deep);
-  --color-beige: var(--beige);
-  --color-beige-soft: var(--beige-soft);
+  --color-pink: var(--pink);
+  --color-pink-soft: var(--pink-soft);
+  --color-pink-deep: var(--pink-deep);
   --color-charcoal: var(--charcoal);
   --color-ring: var(--ring);
   --color-input: var(--input);
@@ -101,7 +100,7 @@
     text-wrap: pretty;
   }
   ::selection {
-    background: var(--sage-soft);
+    background: var(--pink-soft);
   }
   button:not(:disabled),
   [role="button"]:not(:disabled) {
@@ -119,7 +118,7 @@
     @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
   }
   .eyebrow {
-    @apply inline-flex items-center gap-2 text-xs font-semibold tracking-[0.18em] text-sage-deep uppercase;
+    @apply inline-flex items-center gap-2 text-xs font-semibold tracking-[0.18em] text-pink-deep uppercase;
   }
 }
 
@@ -128,25 +127,18 @@ html:has(dialog[open]) {
   overflow: hidden;
 }
 
-/* Scroll-driven reveal used by <Reveal>. No JS: unsupported browsers just show the content. */
-@keyframes reveal-in {
-  from {
+/* Reveal-on-scroll used by <Reveal>: JS only flips data-reveal once, the motion
+   itself is a time-based transition on opacity/transform (compositor-only). */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal[data-reveal="shown"] {
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0s);
+  }
+  .reveal[data-reveal="hidden"] {
     opacity: 0;
     transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .reveal {
-      animation: reveal-in linear both;
-      animation-timeline: view();
-      animation-range: entry calc(5% + var(--reveal-delay, 0%)) entry calc(75% + var(--reveal-delay, 0%));
-    }
   }
 }
 

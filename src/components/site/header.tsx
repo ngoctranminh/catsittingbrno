@@ -45,7 +45,8 @@ export function Header({ locale, nav }: { locale: Locale; nav: Dictionary["nav"]
       className={cn(
         "sticky top-0 z-40 transition-[background-color,box-shadow,border-color] duration-300",
         scrolled || open
-          ? "border-b border-border/70 bg-cream/90 shadow-[0_1px_12px_rgba(51,51,51,0.04)] backdrop-blur-md"
+          ? // Opaque on phones: a backdrop blur on a sticky header re-blurs every scroll frame.
+            "border-b border-border/70 bg-cream shadow-[0_1px_12px_rgba(51,51,51,0.04)] md:bg-cream/90 md:backdrop-blur-md"
           : "border-b border-transparent bg-cream/0",
       )}
     >
@@ -63,7 +64,7 @@ export function Header({ locale, nav }: { locale: Locale; nav: Dictionary["nav"]
                   aria-current={isActive(key) ? "page" : undefined}
                   className={cn(
                     "relative rounded-full px-3.5 py-2 text-sm text-charcoal/75 transition-colors hover:text-charcoal",
-                    "after:absolute after:inset-x-3.5 after:bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-sage-deep after:transition-transform after:duration-300 hover:after:scale-x-100",
+                    "after:absolute after:inset-x-3.5 after:bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-pink-deep after:transition-transform after:duration-300 hover:after:scale-x-100",
                     isActive(key) && "text-charcoal after:scale-x-100",
                   )}
                 >

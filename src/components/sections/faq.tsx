@@ -18,7 +18,7 @@ export function Faq({ title, items }: { title: string; items: Dictionary["proces
               <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-left text-lg text-charcoal">
                 <span>{item.q}</span>
                 <Plus
-                  className="mt-1 size-5 shrink-0 text-sage-deep transition-transform duration-300 group-open:rotate-45"
+                  className="mt-1 size-5 shrink-0 text-pink-deep transition-transform duration-300 group-open:rotate-45"
                   aria-hidden="true"
                 />
               </summary>

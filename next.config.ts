@@ -19,7 +19,9 @@ const nextConfig: NextConfig = {
     globalNotFound: true,
   },
   images: {
-    formats: ["image/avif", "image/webp"],
+    // WebP only: AVIF is smaller but decodes slowly on many phones, so photos
+    // stayed on their placeholder for a moment while scrolling.
+    formats: ["image/webp"],
   },
   turbopack: {
     rules: {

@@ -17,7 +17,7 @@ export function PageHeader({ eyebrow, title, lead, image, locale }: PageHeaderPr
   return (
     <section className="relative overflow-hidden pt-10 pb-14 md:pt-16 md:pb-20">
       <div
-        className="pointer-events-none absolute -top-40 -right-32 size-[30rem] rounded-full bg-sage-soft/70 blur-3xl"
+        className="pointer-events-none absolute -top-40 -right-32 size-[30rem] opacity-70 bg-[radial-gradient(closest-side,var(--pink-soft),transparent)]"
         aria-hidden="true"
       />
       <div className="container-page relative grid items-center gap-10 md:grid-cols-[1.25fr_1fr]">
