@@ -1,84 +1,153 @@
 # Catsitting Brno 🐾
 
-Website giới thiệu dịch vụ hlídání koček (trông mèo tại nhà) ở Brno. Tiếng Séc là ngôn ngữ chính (`/`), tiếng Anh ở `/en`.
+Hotový web pro službu hlídání koček v Brně. Je ve dvou jazycích: čeština na hlavní adrese (`/`) a angličtina na `/en`.
 
-**Công nghệ:** Next.js 16 (App Router, Cache Components) · TypeScript · Tailwind CSS v4 · shadcn/ui (Base UI) · Lucide · Framer Motion · Zod
+Obsahuje tyto stránky: úvod, o nás, služby, ceník, jak to funguje, galerie, kontakt s poptávkovým formulářem, ochrana osobních údajů a obchodní podmínky.
 
-## Chạy dự án
+**Použité technologie:** Next.js 16 · TypeScript · Tailwind CSS 4 · shadcn/ui · Framer Motion · Zod. Web běží na Cloudflare Workers.
+
+---
+
+## 1. Spuštění na vlastním počítači
+
+Budete potřebovat **Node.js 20.9 nebo novější** ([nodejs.org](https://nodejs.org)).
 
 ```bash
-npm install
-npm run dev          # http://localhost:3000
-npx tsc --noEmit     # typecheck
-npm run lint
-npm run build && npm start
+npm install      # stáhne potřebné balíčky (stačí jednou)
+npm run dev      # spustí web na http://localhost:3000
 ```
 
-Yêu cầu Node.js 20.9 trở lên.
+Když v kódu něco změníte, web se v prohlížeči sám obnoví.
 
-## Cần làm trước khi công bố
+Další užitečné příkazy:
 
-| Việc | Ở đâu |
+```bash
+npm run lint         # kontrola kódu
+npx tsc --noEmit     # kontrola typů
+npm run build        # zkušební sestavení webu
+```
+
+---
+
+## 2. Co upravit, než web spustíte
+
+Všechny texty a údaje jsou na několika místech. Programovat nemusíte, stačí přepsat hodnoty v uvozovkách.
+
+| Co | Kde |
 | --- | --- |
-| Tên công ty, logo | `src/config/site.ts` → `name`, `logo` (đặt file vào `public/`, ví dụ `"/logo.svg"`) |
-| Điện thoại, email, địa chỉ, IČO, giờ làm việc, mạng xã hội | `src/config/site.ts` – mọi giá trị `null` sẽ hiện "Doplníme brzy" hoặc bị ẩn |
-| Tên miền | biến `NEXT_PUBLIC_SITE_URL` (canonical, sitemap, Open Graph) |
-| Gửi form qua email | biến `RESEND_API_KEY`, `INQUIRY_TO_EMAIL`, `INQUIRY_FROM_EMAIL` (xem dưới) |
-| Bảng giá | `src/content/cs.ts` + `en.ts` → `pricing` (hiện là "Cena na vyžádání") |
-| Dịch vụ, văn bản | `src/content/cs.ts` (tiếng Séc) và `src/content/en.ts` (tiếng Anh) |
-| Đánh giá khách hàng thật | `src/content/testimonials.ts` – khi danh sách có dữ liệu, trang chủ tự hiện mục Reference |
-| Ảnh thật của bạn | thêm vào `public/images/`, khai báo trong `src/lib/images.ts`, `src/content/gallery.ts` |
-| Ochrana osobních údajů | rà soát lại văn bản trong `cs.ts`/`en.ts` → `privacy` (thời hạn lưu 12 tháng là đề xuất) |
-| Obchodní podmínky | hiện là trang "đang chuẩn bị" (`noindex`, không có trong sitemap). Khi có điều khoản chính thức: sửa `src/components/pages/terms-page.tsx`, bỏ `noIndex` trong 2 file route và bỏ `"terms"` khỏi `EXCLUDED` trong `src/app/sitemap.ts` |
+| Název firmy, logo, telefon, e-mail, adresa, IČO, otevírací doba, Instagram, Facebook | `src/config/site.ts` |
+| Texty v češtině | `src/content/cs.ts` |
+| Texty v angličtině | `src/content/en.ts` |
+| Ceník | `src/content/cs.ts` a `src/content/en.ts`, část `pricing` |
+| Recenze zákazníků | `src/content/testimonials.ts` (když je vyplníte, na úvodní stránce se samy zobrazí) |
+| Fotky | soubory dejte do `public/images/` a zapište je do `src/lib/images.ts` a `src/content/gallery.ts` |
+| Barvy webu | proměnné na začátku souboru `src/app/globals.css` |
 
-Nên nhờ luật sư kiểm tra trang GDPR và điều khoản dịch vụ trước khi công bố.
+**Dobré vědět:**
 
-## Form đặt lịch (poptávka)
+- Když v `site.ts` necháte hodnotu `null`, web ji skryje nebo napíše „Doplníme brzy". Nic si nevymýšlí.
+- Stránka **Obchodní podmínky** je zatím jen „připravujeme" a vyhledávače ji neindexují. Až budete mít skutečné podmínky, upravte `src/components/pages/terms-page.tsx`, odstraňte `noIndex` ve dvou souborech stránky a smažte `"terms"` ze seznamu `EXCLUDED` v `src/app/sitemap.ts`.
+- Texty o **ochraně osobních údajů (GDPR)** a obchodní podmínky doporučujeme před spuštěním nechat zkontrolovat právníkem.
 
-- Kiểm tra dữ liệu bằng cùng một schema Zod ở trình duyệt và trên server (`src/lib/inquiry.ts`).
-- Chống spam: ô honeypot ẩn, thời gian điền tối thiểu 3 giây, giới hạn 5 lần gửi / 10 phút / IP (`src/lib/rate-limit.ts`, lưu trong bộ nhớ của từng instance; nếu chạy nhiều instance nên dùng Redis, ví dụ Upstash).
-- Gửi email qua [Resend](https://resend.com). Khi **chưa** cấu hình đủ 3 biến, form báo rõ "Formulář zatím není aktivní" và **không** giả vờ đã gửi.
+---
 
-Cấu hình: sao chép `.env.example` thành `.env.local` rồi điền:
+## 3. Nastavení (proměnné prostředí)
+
+Zkopírujte soubor `.env.example` jako `.env.local` a doplňte hodnoty:
 
 ```
-NEXT_PUBLIC_SITE_URL=https://www.ten-mien.cz
+NEXT_PUBLIC_SITE_URL=https://www.vase-domena.cz
 RESEND_API_KEY=re_...
-INQUIRY_TO_EMAIL=ban@ten-mien.cz
-INQUIRY_FROM_EMAIL="Catsitting Brno <poptavky@ten-mien.cz>"   # tên miền phải được xác minh trong Resend
+INQUIRY_TO_EMAIL=vy@vase-domena.cz
+INQUIRY_FROM_EMAIL="Catsitting Brno <poptavky@vase-domena.cz>"
 ```
 
-## SEO
+| Proměnná | K čemu slouží |
+| --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | adresa vašeho webu (pro Google, sitemapu a náhledy při sdílení) |
+| `RESEND_API_KEY` | klíč ze služby [Resend](https://resend.com), přes kterou se posílají e-maily |
+| `INQUIRY_TO_EMAIL` | kam mají chodit poptávky (víc adres oddělte čárkou) |
+| `INQUIRY_FROM_EMAIL` | odesílatel e-mailu. Doména musí být ověřená v Resendu. |
 
-- Meta title/description, canonical, hreflang (`cs`, `en`, `x-default`), Open Graph, Twitter card cho từng trang (`src/lib/seo.ts`).
-- `sitemap.xml`, `robots.txt`, `manifest.webmanifest` sinh tự động.
-- JSON-LD `LocalBusiness` chỉ được xuất ra khi đã có điện thoại/email **và** địa chỉ đầy đủ trong `site.ts` (`src/lib/structured-data.ts`).
-- Tất cả trang được prerender tĩnh; ảnh được tối ưu bằng `next/image` (AVIF/WebP, blur placeholder); hiệu ứng xuất hiện khi cuộn dùng CSS thuần nên nội dung luôn có sẵn trong HTML.
+Soubor `.env.local` se nenahrává na GitHub, takže vaše hesla zůstanou jen u vás.
 
-## Cookie
+---
 
-Website không dùng cookie theo dõi hay analytics nên **không cần** cookie banner. Nếu sau này thêm Google Analytics, Meta Pixel…, cần thêm banner xin đồng ý trước khi tải các script đó.
+## 4. Poptávkový formulář
 
-## Ảnh
+- Zákazník vyplní formulář a vám přijde e-mail.
+- Dokud nejsou nastavené všechny tři e-mailové proměnné, formulář napíše „Formulář zatím není aktivní" a nic neodešle. Nepředstírá, že zpráva odešla.
+- **Ochrana proti spamu:** skryté pole pro roboty, minimální doba vyplnění 3 sekundy a nejvýš 5 odeslání za 10 minut z jedné IP adresy.
 
-Ảnh minh họa lấy từ Unsplash (Unsplash License – được dùng thương mại). Trang Galerie ghi rõ đây là ảnh minh họa, không phải khách hàng thật. Chỉ đăng ảnh mèo của khách khi có sự đồng ý của chủ nuôi.
+---
 
-## Cấu trúc
+## 5. Zveřejnění na internetu (Cloudflare)
+
+Web je připravený pro [Cloudflare Workers](https://workers.cloudflare.com). Základní tarif je zdarma.
+
+1. Založte si účet na Cloudflare.
+2. Přihlaste se v terminálu:
+   ```bash
+   npx wrangler login
+   ```
+3. Uložte tajné údaje přímo do Cloudflare (každý příkaz se zeptá na hodnotu):
+   ```bash
+   npx wrangler secret put RESEND_API_KEY
+   npx wrangler secret put INQUIRY_TO_EMAIL
+   npx wrangler secret put INQUIRY_FROM_EMAIL
+   ```
+4. Ověřte, že máte v `.env.local` správnou `NEXT_PUBLIC_SITE_URL`. Načítá se při sestavení webu.
+5. Nahrajte web:
+   ```bash
+   npm run deploy
+   ```
+6. V Cloudflare k webu připojte svou doménu (Workers → váš worker → Settings → Domains & Routes).
+
+Pokud chcete web před zveřejněním vyzkoušet tak, jak poběží na Cloudflare, použijte `npm run preview`.
+
+Název workeru je `catsittingbrno` a najdete ho v souboru `wrangler.jsonc`. Pokud ho změníte, upravte ho tam na obou místech (`name` a `service`).
+
+---
+
+## 6. SEO (vyhledávače)
+
+O základní SEO je postaráno:
+
+- každá stránka má vlastní název a popis, správné odkazy mezi českou a anglickou verzí a náhled pro sdílení na sociálních sítích;
+- `sitemap.xml`, `robots.txt` a manifest se vytvoří samy;
+- údaje o firmě pro Google (`LocalBusiness`) se zobrazí, jakmile v `site.ts` vyplníte telefon nebo e-mail **a** celou adresu;
+- všechny stránky se připraví předem, takže se načítají velmi rychle;
+- fotky se automaticky zmenšují a převádějí do formátu WebP.
+
+---
+
+## 7. Cookies
+
+Web nepoužívá žádné sledovací cookies ani analytiku, proto **nepotřebuje cookie lištu**. Pokud později přidáte třeba Google Analytics nebo Meta Pixel, budete muset přidat lištu se souhlasem.
+
+---
+
+## 8. Fotky
+
+Ukázkové fotky koček jsou z [Unsplash](https://unsplash.com) a podle jeho licence je smíte použít i komerčně. V galerii je uvedeno, že jde o ilustrační fotky. Fotky koček svých zákazníků zveřejňujte jen s jejich souhlasem.
+
+---
+
+## 9. Struktura projektu
 
 ```
 src/
   app/
-    (cs)/…            các trang tiếng Séc: /, /o-nas, /sluzby, /cenik, /jak-to-funguje, /galerie, /kontakt, …
-    (en)/en/…         các trang tiếng Anh: /en, /en/about, /en/services, …
-    actions/          server action gửi form
-    global-not-found.tsx, sitemap.ts, robots.ts, manifest.ts, icon.svg, globals.css (bảng màu)
+    (cs)/…          české stránky: /, /o-nas, /sluzby, /cenik, /jak-to-funguje, /galerie, /kontakt …
+    (en)/en/…       anglické stránky: /en, /en/about, /en/services …
+    actions/        odeslání formuláře
+    globals.css     barvy a styly
   components/
-    pages/            nội dung từng trang (dùng chung cho 2 ngôn ngữ)
-    sections/         các khối giao diện (hero, dịch vụ, quy trình, CTA, FAQ…)
+    pages/          obsah jednotlivých stránek (společný pro oba jazyky)
+    sections/       bloky stránek (úvodní banner, služby, postup, FAQ …)
     contact/ gallery/ site/ motion/ ui/
-  config/site.ts      thông tin doanh nghiệp
-  content/            toàn bộ văn bản (cs.ts, en.ts), ảnh gallery, đánh giá
-  lib/                i18n, SEO, validation, email, rate limit
+  config/site.ts    údaje o firmě
+  content/          všechny texty (cs.ts, en.ts), galerie, recenze
+  lib/              jazyky, SEO, kontrola formuláře, e-maily, ochrana proti spamu
+public/             obrázky, logo, ikona
 ```
-
-Đổi bảng màu: sửa biến CSS ở đầu `src/app/globals.css`.
